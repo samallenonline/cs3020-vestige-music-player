@@ -11,8 +11,8 @@ namespace VestigeMusicPlayer
     public partial class Form1 : Form
     {
         private List<Playlist> _playlists = new List<Playlist>();
-        private IWavePlayer waveOut; /* handles audio output */
         private AudioFileReader audioFileReader; /* reads and decodes MP3 */
+
         public Form1()
         {
             InitializeComponent();
@@ -28,37 +28,48 @@ namespace VestigeMusicPlayer
 
         }
 
+        class Track
+        {
+            public string FilePath { get; set; }
+            public string Name => Path.GetFileName(FilePath);
+        }
+
         class Playlist
         {
             /* properties */
             public string Name { get; set; } = "New Playlist";
-            private readonly List<string> _tracks = new();
-            public List<string> Tracks => _tracks;
+            public List<Track> Tracks = new();
 
             private int _currentIndex = 0;
-            private WaveOutEvent _output;
-            private AudioFileReader _reader;
+            private WaveOutEvent? _output;
+            private AudioFileReader? _reader;
             private bool _isPaused = false; /* track if playback is paused */
+            private bool _isPlaying = false;
 
             /* methods */
-            public void LoadPlaylist(IEnumerable<string> files)
+            public void LoadPlaylist(IEnumerable<Track> tracks)
             {
-                _tracks.Clear();
-                _tracks.AddRange(files);
+                Tracks.Clear();
+                Tracks.AddRange(tracks);
             }
 
             public void Play()
             {
+                /* if already playing, just return */
+                if (_isPlaying) { return; }
+
                 /* if paused, resume track */
                 if (_output != null && _isPaused)
                 {
                     _output.Play();
                     _isPaused = false;
+                    _isPlaying = true;
                     return;
                 }
 
                 /* start new */
                 PlayTrack(_currentIndex);
+                _isPlaying = true;
             }
 
             public void Pause()
@@ -67,6 +78,7 @@ namespace VestigeMusicPlayer
                 {
                     _output.Pause();
                     _isPaused = true;
+                    _isPlaying = false;
                 }
             }
 
@@ -76,6 +88,7 @@ namespace VestigeMusicPlayer
                 {
                     _output.PlaybackStopped -= OnPlaybackStopped;
                     _output.Stop();
+                    _isPlaying = false;
                 }
 
                 _reader?.Dispose();
@@ -83,6 +96,7 @@ namespace VestigeMusicPlayer
                 _reader = null;
                 _output = null;
                 _isPaused = false;
+                _isPlaying = false;
             }
 
             private void PlayTrack(int index)
@@ -90,7 +104,7 @@ namespace VestigeMusicPlayer
                 _reader?.Dispose();
                 _output?.Dispose();
 
-                _reader = new AudioFileReader(_tracks[index]);
+                _reader = new AudioFileReader(Tracks[index].FilePath);
                 _output = new WaveOutEvent();
                 _output.Init(_reader);
                 _output.Play();
@@ -99,13 +113,13 @@ namespace VestigeMusicPlayer
 
             public void Next()
             {
-                _currentIndex = (_currentIndex + 1) % _tracks.Count;
+                _currentIndex = (_currentIndex + 1) % Tracks.Count;
                 PlayTrack(_currentIndex);
             }
 
             public void SetTrack(int index)
             {
-                if (index >= 0 && index < _tracks.Count)
+                if (index >= 0 && index < Tracks.Count)
                 {
                     _currentIndex = index;
                 }
@@ -113,16 +127,18 @@ namespace VestigeMusicPlayer
 
             private void OnPlaybackStopped(object sender, StoppedEventArgs e)
             {
+                /* when playback has stopped naturally (not when 'stop' button 
+                 * has been pressed), move to the next song */
                 Next();
             }
 
             public void MoveTrack(int oldIndex, int newIndex)
             {
-                if (oldIndex >= 0 && oldIndex < _tracks.Count && newIndex >= 0 && newIndex < _tracks.Count)
+                if (oldIndex >= 0 && oldIndex < Tracks.Count && newIndex >= 0 && newIndex < Tracks.Count)
                 {
-                    string track = _tracks[oldIndex];
-                    _tracks.RemoveAt(oldIndex);
-                    _tracks.Insert(newIndex, track);
+                    Track track = Tracks[oldIndex];
+                    Tracks.RemoveAt(oldIndex);
+                    Tracks.Insert(newIndex, track);
                 }
             }
         }
@@ -142,6 +158,7 @@ namespace VestigeMusicPlayer
                 else
                 {
                     Tracklist.DataSource = selected.Tracks;
+                    Tracklist.DisplayMember = "Name";
                     lblTrackName.Text = "Select a track";
                 }
             }
@@ -171,9 +188,10 @@ namespace VestigeMusicPlayer
 
                     if (Playlist_List.SelectedItem is Playlist selected)
                     {
-                        selected.Tracks.Add(filePath);
+                        selected.Tracks.Add(new Track { FilePath = filePath });
                         Tracklist.DataSource = null;
                         Tracklist.DataSource = selected.Tracks;
+                        Tracklist.DisplayMember = "Name"; 
                     }
                 }
             }
@@ -228,9 +246,7 @@ namespace VestigeMusicPlayer
         private void Cleanup()
         {
             audioFileReader?.Dispose();
-            waveOut?.Dispose();
             audioFileReader = null;
-            waveOut = null;
         }
 
         /* ensure cleanup */
@@ -245,6 +261,7 @@ namespace VestigeMusicPlayer
             if (Playlist_List.SelectedItem is Playlist selected)
             {
                 selected.Tracks.RemoveAt(Tracklist.SelectedIndex);
+                Tracklist.DisplayMember = "Name";
                 Tracklist.DataSource = null;
                 Tracklist.DataSource = selected.Tracks;
                 lblTrackName.Text = "Select a track";
@@ -262,6 +279,7 @@ namespace VestigeMusicPlayer
                     selected.MoveTrack(index, index - 1);
                     Tracklist.DataSource = null;
                     Tracklist.DataSource = selected.Tracks;
+                    Tracklist.DataSource = "Name";
                     Tracklist.SelectedIndex = index - 1;
                 }
             }
@@ -278,6 +296,7 @@ namespace VestigeMusicPlayer
                     selected.MoveTrack(index, index + 1);
                     Tracklist.DataSource = null;
                     Tracklist.DataSource = selected.Tracks;
+                    Tracklist.DataSource = "Name";
                     Tracklist.SelectedIndex = index + 1;
                 }
             }

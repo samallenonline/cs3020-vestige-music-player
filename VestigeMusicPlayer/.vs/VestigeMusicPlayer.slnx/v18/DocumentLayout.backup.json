@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{650A2D84-EBF2-107E-74E5-84568EE4ADB1}|VestigeMusicPlayer.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{650A2D84-EBF2-107E-74E5-84568EE4ADB1}|VestigeMusicPlayer.csproj|c:\\users\\sam\\source\\repos\\vestigemusicplayer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{650A2D84-EBF2-107E-74E5-84568EE4ADB1}|VestigeMusicPlayer.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{650A2D84-EBF2-107E-74E5-84568EE4ADB1}|VestigeMusicPlayer.csproj|C:\\Users\\Sam\\source\\repos\\VestigeMusicPlayer\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{650A2D84-EBF2-107E-74E5-84568EE4ADB1}|VestigeMusicPlayer.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{650A2D84-EBF2-107E-74E5-84568EE4ADB1}|VestigeMusicPlayer.csproj|c:\\users\\sam\\source\\repos\\vestigemusicplayer\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{650A2D84-EBF2-107E-74E5-84568EE4ADB1}|VestigeMusicPlayer.csproj|solutionrelative:form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{650A2D84-EBF2-107E-74E5-84568EE4ADB1}|VestigeMusicPlayer.csproj|c:\\users\\sam\\source\\repos\\vestigemusicplayer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{650A2D84-EBF2-107E-74E5-84568EE4ADB1}|VestigeMusicPlayer.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +30,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\VestigeMusicPlayer\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "Form1.Designer.cs",
@@ -38,11 +38,12 @@
               "RelativeToolTip": "Form1.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-03T08:03:09.6Z"
+              "WhenOpened": "2026-05-03T08:03:09.6Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\VestigeMusicPlayer\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
@@ -54,7 +55,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\VestigeMusicPlayer\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -62,7 +63,8 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-03T08:03:19.715Z"
+              "WhenOpened": "2026-05-03T08:03:19.715Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -72,7 +74,7 @@
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\Sam\\source\\repos\\VestigeMusicPlayer\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFcAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAIwGIAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-03T07:34:07.529Z",
               "EditorCaption": ""
