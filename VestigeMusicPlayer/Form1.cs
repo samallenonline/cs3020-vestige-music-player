@@ -34,7 +34,7 @@ namespace VestigeMusicPlayer
             public string Name => Path.GetFileName(FilePath);
         }
 
-        class Playlist
+        class Playlist 
         {
             /* properties */
             public string Name { get; set; } = "New Playlist";
@@ -261,7 +261,6 @@ namespace VestigeMusicPlayer
             if (Playlist_List.SelectedItem is Playlist selected)
             {
                 selected.Tracks.RemoveAt(Tracklist.SelectedIndex);
-                Tracklist.DisplayMember = "Name";
                 Tracklist.DataSource = null;
                 Tracklist.DataSource = selected.Tracks;
                 lblTrackName.Text = "Select a track";
@@ -279,7 +278,6 @@ namespace VestigeMusicPlayer
                     selected.MoveTrack(index, index - 1);
                     Tracklist.DataSource = null;
                     Tracklist.DataSource = selected.Tracks;
-                    Tracklist.DataSource = "Name";
                     Tracklist.SelectedIndex = index - 1;
                 }
             }
@@ -296,7 +294,6 @@ namespace VestigeMusicPlayer
                     selected.MoveTrack(index, index + 1);
                     Tracklist.DataSource = null;
                     Tracklist.DataSource = selected.Tracks;
-                    Tracklist.DataSource = "Name";
                     Tracklist.SelectedIndex = index + 1;
                 }
             }
